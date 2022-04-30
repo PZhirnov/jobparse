@@ -151,7 +151,7 @@ class DataFromPage:
         return result_list
 
 
-# ------- Основаня функция к 2-му уроку --------
+
 def get_hh(url_start, page_num=None):
     """
     Получаем данные с HH
@@ -175,26 +175,7 @@ def get_hh(url_start, page_num=None):
     return data_all_pages
 
 
-'''
-data = get_hh(START_URL, 1)  # если добавить параметр, то можно установить количество выгружаемых страниц
-data_frame = pd.DataFrame(data, columns=['Наименование вакансии',
-                                         'Ссылка на вакансию',
-                                         'ЗП от',
-                                         'ЗП до',
-                                         'Валюта ЗП',
-                                         'Работодатель',
-                                         'Ссылка на работодателя',
-                                         'Описание статуса',
-                                         'Статус проверки работодателя',
-                                         'Адрес',
-                                         'Обзанности',
-                                         'Требования',
-                                         ])
-data_frame.to_excel("output.xlsx")
-'''
 
-
-# -------- Решения к 3-му уроку --------
 
 # -- Параметры БД ----
 MONGO_HOST = "localhost"
@@ -240,13 +221,6 @@ def compare_dicts(dict1: {}, dict2: {}):
     return compare_result
 
 
-# РЕШЕНИЯ ПО УСЛОВИЯМ
-
-
-"""
-    1. Развернуть у себя на компьютере/виртуальной машине/хостинге 
-    MongoDB и реализовать функцию, записывающую собранные вакансии в созданную БД.
-"""
 
 
 def insert_data_many(list_dict):
@@ -283,12 +257,9 @@ def get_and_insert_many_in_mongo(url_start, page_num=None):
         time.sleep(randint(3, 10))
     return f'Обработано и добавлено {rows_count} записей.'
 
-# Раскомментировать строку для проверки задания - добавит вакансии со всех страниц
-# print(get_and_insert_many_in_mongo(START_URL))
-
 
 """
-    2. Написать функцию, которая производит поиск и выводит 
+    2. Функция производит поиск и выводит 
     на экран вакансии с заработной платой больше введённой суммы.
 """
 
@@ -306,21 +277,6 @@ def get_salary_more_than(salary, currency):
         for i in cursor:
             search_result.append(i)
     return search_result
-
-# Проверка решения по условию задачи:
-
-# while True:
-#     min_wage = int(input('Введите манимальную заработную плату или 0 для выхода: '))
-#     if min_wage == 0:
-#         break
-#     result = get_salary_more_than(min_wage, 'руб.')  # вы выборке есть и доллары, поэтому тут можно доработку сделать
-#     pprint(result)
-#     print(f'Найдено {len(result)} записей.')
-
-
-"""
-    3. Написать функцию, которая будет добавлять в вашу базу данные только новые вакансии с сайта.
-"""
 
 
 def insert_only_new(list_dict):
